@@ -45,38 +45,61 @@
         }
 
         function addUser() {
+            // Swal.fire({
+            //     title: 'Add User',
+            //     html: '<input id="email" placeholder="Email" class="swal2-input">' +
+            //         '<input id="password" placeholder="Password" class="swal2-input">',
+            //     icon: 'warning',
+            //     showCancelButton: true,
+            //     confirmButtonColor: '#3085d6',
+            //     cancelButtonColor: '#d33',
+            //     confirmButtonText: 'Submit'
+            //     }).then((result) => {
+            //     if (result.isConfirmed) {
+            //         Swal.fire(
+            //         'Deleted!',
+            //         'Your file has been deleted.',
+            //         'success'
+            //         )
+            //     }
+            // })
             Swal.fire({
                 title: 'Add User',
+                showCancelButton: true,
+                confirmButtonText: "Add",
                 html: '<input id="email" placeholder="Email" class="swal2-input">' +
                     '<input id="password" placeholder="Password" class="swal2-input">',
                 focusConfirm: false,
                 preConfirm: () => {
-                    $.ajax('/admin/add-user', {
+                    let status;
+                    return new Promise(function (resolve,reject) {
+                     $.ajax('/admin/add-user', {
                         type: 'POST',
                         data:{
                             email:document.getElementById('email').value,
                             password:document.getElementById('password').value
                         },
                         success: function(data) { // success callback function
-                            console.log(data)
                             if(data.status){
                                 Swal.fire('add user ok');
                             }
                             else{
                                 Swal.fire('there is error');
                             }
+                            resolve(true)
 
                         },
                         error: function(jqXhr, textStatus, errorMessage) { // error callback
-                            $('p').append('Error: ' + errorMessage);
+                            Object.values(jqXhr.responseJSON.errors).forEach(val => {
+                                val.forEach((element) => {
+                                    alert(element)
+                                });
+
+                            });
+                            resolve(false)
                         }
                     });
-
-
-
-                    return [
-
-                    ]
+                        });
                 }
             })
         }

@@ -46,6 +46,10 @@ class AdminController extends Controller
      * @return Illuminate\Http\JsonResponse
      */
     public function addUser(Request $request){
+        $this->validate($request,[
+            'email'=>'required|unique:main_users',
+            'password'=>'required'
+        ]);
         $url = config('app.url');
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . Session::get('access_token'),

@@ -14,6 +14,11 @@ php artisan passport:install
 
 ## install dummy data
 php artisan db:seed
+
 ## API docs
 {url}/api/documentation
+
+## import duump.sql
+sample admin : yquitzon@example.org  with pass : 123123
+sample user :wael@xlineparts.com  with pass : 123123
 ````
