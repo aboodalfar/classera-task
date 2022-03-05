@@ -2,6 +2,7 @@
     "recommendations": [
         "shufo.vscode-blade-formatter",
         "onecentlin.laravel-blade",
-        "onecentlin.laravel5-snippets"
+        "onecentlin.laravel5-snippets",
+        "bmewburn.vscode-intelephense-client"
     ]
 }

@@ -19,9 +19,6 @@
                                 <button class="btn" onclick="sync()">sync</button>
                             </li>
                             <li>
-                                <button class="btn">SSO</button>
-                            </li>
-                            <li>
                                 <button class="btn" onclick="addUser()">add user</button>
                             </li>
                         </ul>

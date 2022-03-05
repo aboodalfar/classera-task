@@ -8,7 +8,12 @@
 </p>
 
 ````
+composer install
 php artisan migrate
 php artisan passport:install
 
+## install dummy data
+php artisan db:seed
+## API docs
+{url}/api/documentation
 ````
