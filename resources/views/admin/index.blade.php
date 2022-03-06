@@ -13,10 +13,12 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
                         <ul class="d-block">
                             <li>
-                                <button class="btn" onclick="sync()">sync</button>
+                                <button class="btn" onclick="sync()">
+                                    <i class="fa fa-spinner fa-spin" id='loading' style='display:none'></i>
+                                    sync
+                                </button>
                             </li>
                             <li>
                                 <button class="btn" onclick="addUser()">add user</button>
@@ -34,9 +36,11 @@
 @section('scripts')
     <script>
         function sync() {
+            $('#loading').show();
             $.ajax('/admin/sync', {
                 success: function(data) { // success callback function
                     Swal.fire('sync ok');
+                    $('#loading').hide();
                 },
                 error: function(jqXhr, textStatus, errorMessage) { // error callback
                     $('p').append('Error: ' + errorMessage);
@@ -45,24 +49,6 @@
         }
 
         function addUser() {
-            // Swal.fire({
-            //     title: 'Add User',
-            //     html: '<input id="email" placeholder="Email" class="swal2-input">' +
-            //         '<input id="password" placeholder="Password" class="swal2-input">',
-            //     icon: 'warning',
-            //     showCancelButton: true,
-            //     confirmButtonColor: '#3085d6',
-            //     cancelButtonColor: '#d33',
-            //     confirmButtonText: 'Submit'
-            //     }).then((result) => {
-            //     if (result.isConfirmed) {
-            //         Swal.fire(
-            //         'Deleted!',
-            //         'Your file has been deleted.',
-            //         'success'
-            //         )
-            //     }
-            // })
             Swal.fire({
                 title: 'Add User',
                 showCancelButton: true,
